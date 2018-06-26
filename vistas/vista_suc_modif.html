@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sucursal/Modificacion</title>
+
+	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+$(document).ready(function(){
+ $("#calle_sin_nom").click(function(){
+ $("#altu").toggle(10);
+ });
+});
+</script>
+
+
+<script>
+    function soloNum(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = "1234567890";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+    }
+</script>
+
+
+</head>
+<body>
+
+
+<form name="datos_bas" id="datos_bas">
+	
+<div class="miform">
+<fieldset>Datos Contribuyente-Modificar Sucursal</fieldset>
+	<label for="cuit">Cuit Contribuyente</label>
+	<input type="number" name="cuit" id="cuit" value="2037462532" placeholder="20374625323" disabled>
+	<label for="nro_ins">Nro Inscripcion</label>
+	<input type="number" name="nro_ins" id="nro_ins"  value="2037462532" disabled>
+
+</form>
+
+<div id="mensaje"></div>
+<form onsubmit="return validar1();"   action="../controladores/modif_suc.php" method="GET" name="modif_suc" >
+
+
+
+			<label for="id_sucurs" style ="display: none">Id Sucursal</label>
+			<input type="number" name="id_sucurs" id="id_sucurs" value="<?php echo $id_suc; ?>" style ="display: none">
+			
+			<input type="number" name="cuit" id="cuit" value="2037462532" placeholder="20374625323" style="display:none">
+			<input type="number" name="nro_ins" id="nro_ins"  value="2037462532"  style="display:none" >
+			
+
+
+					
+									
+
+			<input class="form-control" type="hidden" name="id" id="id" value=""><!--campo que recibirá el id-->
+			<label for="nombre">B&uacute;squeda de Calles</label>
+			<input  type="text" name="nombre" id="nombre" placeholder="<?php echo $nombcalle; ?>" onkeyup="autocompletar()" autocomplete="off" required maxlength="25" class="form-control"><!--Campo de busqueda-->
+
+			<ul id="lista"></ul>
+			<div id="e_nombre" style="color:red;" ></div>
+			
+			<input type="hidden" id="e2_nombre" value="">
+			
+						
+
+
+
+
+			<div id="altu">
+			<label for="calle_alt">Altura Calle</label>
+			<input type="text" name="calle_alt" id="calle_alt" onkeypress="return soloNum(event)" placeholder="<?php echo $altura; ?>" maxlength="4" class="form-control">
+			</div>
+
+
+			<br>
+			<label for="calle_alt">Calle S/N</label>
+			<input type="checkbox" name="calle_sin_nom" id="calle_sin_nom"  >
+			<input type="hidden" name="id_calle_sin_nom" id="id_calle_sin_nom" >
+									
+			<div id="e_nombre4" style="color:red;"></div>
+				  <br>			
+			      <label for="lista_actividades">Lista de Actividades(seleccione al menos 1):</label>
+                  <br>
+                  
+                  <div name="lista_actividades">
+                    
+                  <label> <input type="checkbox" name="actividad_1" id="actividad_1" value="00001">Cría y venta de animales</label>
+
+
+                  <label> <input type="checkbox" name="actividad_2" id="actividad_2" value="00002" checked="checked">Producción y venta de leche</label>
+
+                  <label> <input type="checkbox" name="actividad_3" id="actividad_3" value="00003">Cultivo y venta de productos agrícolas</label>
+
+                  </div>
+
+
+
+			<label for="sucurs_princ">Sucursal Principal</label>
+			<select name="sucurs_princ" id="sucurs_princ" required>
+
+				<option value="si">Si</option>
+				<option value="no" selected>No</option>
+			</select>
+
+									<button id="alta1" class="btn btn-success" type="submit">Modificar</button>
+		<a class="btn btn-warning" href="../index.php" >Cancelar</a>
+
+</form>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="../js/contr_sucurs.js"></script>
+
+<script type="text/javascript" src="../js/manejador_calles_mod.js"></script>
+
+<script type="text/javascript" src="../js/jquery_3_3_1_min.js"></script>
+
+
+<script src="../js/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript" src="../js/sc2.js"></script>
+
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
+
+</body>
+</html>
